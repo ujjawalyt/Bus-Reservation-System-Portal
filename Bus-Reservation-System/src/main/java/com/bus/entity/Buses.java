@@ -3,10 +3,13 @@ package com.bus.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -17,20 +20,23 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reservation {
- 
+public class Buses {
+   
 	@Id
 	@GeneratedValue(strategy =  GenerationType.SEQUENCE)
-	private Long reservationId;
-	private String status;
-	private String reservationType;
-	private LocalDate reservationDate;
-	private LocalTime reservationTime;
-	private String source;
-	private String destination;
+	private Long busId;
+	private String busName;
+	private String driverName;
+	private String busType;
+	private String routeTo;
+	private LocalTime arrivalTime;
+	private LocalTime departureTime;
+	private Integer Seat;
+	private Integer availableSeats;
 	
 	@OneToOne
-	private Buses bus;
+	private Feedback feedback;
 	
-
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Routes route;
 }
