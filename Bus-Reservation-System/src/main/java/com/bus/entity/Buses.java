@@ -29,8 +29,8 @@ public class Buses {
 	private String driverName;
 	private String busType;
 	private String routeTo;
-	private LocalTime arrivalTime;
-	private LocalTime departureTime;
+	private LocalTime arrivalTime=LocalTime.now();
+	private LocalTime departureTime=LocalTime.MIDNIGHT;
 	private Integer Seat;
 	private Integer availableSeats;
 	
