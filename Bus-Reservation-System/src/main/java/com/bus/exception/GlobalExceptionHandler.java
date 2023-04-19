@@ -78,6 +78,18 @@ public ResponseEntity<MyErrorDetails> myCNFEHandler(CustomerNotFoundException cn
 		
 	
 }
+	@ExceptionHandler(FeedbackNotFoundException.class)
+	public ResponseEntity<MyErrorDetails> myFNFEHandler(FeedbackNotFoundException fBFe, WebRequest wr){
+			
+			MyErrorDetails error = new MyErrorDetails();
+			error.setTimestamp(LocalDateTime.now());
+			error.setMessage(fBFe.getMessage());
+			error.setDescription(wr.getDescription(false));
+			
+			return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+		
+	
+}
 	
 }
 
