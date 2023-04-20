@@ -2,7 +2,7 @@ package com.bus.service;
 
 import java.util.List;
 
-import com.bus.dao.RouteDTO;
+import com.bus.dto.RouteDTO;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.RouteNotFoundException;

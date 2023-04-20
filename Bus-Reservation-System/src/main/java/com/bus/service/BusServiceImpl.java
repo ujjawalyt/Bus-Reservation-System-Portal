@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bus.dao.BusDTO;
+import com.bus.dto.BusDTO;
 import com.bus.entity.Buses;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.BusNotFoundException;

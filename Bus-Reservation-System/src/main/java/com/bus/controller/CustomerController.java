@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bus.dao.CustomerDTO;
+import com.bus.dto.CustomerDTO;
 import com.bus.entity.Customer;
 import com.bus.exception.CustomerNotFoundException;
 import com.bus.service.CustomerService;

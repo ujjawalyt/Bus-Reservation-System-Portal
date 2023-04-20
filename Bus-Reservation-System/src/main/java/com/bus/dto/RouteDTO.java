@@ -1,4 +1,4 @@
-package com.bus.dao;
+package com.bus.dto;
 
 import java.util.List;
 

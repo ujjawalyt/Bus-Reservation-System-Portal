@@ -2,7 +2,7 @@ package com.bus.service;
 
 import java.util.List;
 
-import com.bus.dao.BusDTO;
+import com.bus.dto.BusDTO;
 import com.bus.entity.Buses;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.BusNotFoundException;

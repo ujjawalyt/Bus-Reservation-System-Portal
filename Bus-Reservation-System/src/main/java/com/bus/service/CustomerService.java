@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bus.dao.CustomerDTO;
+import com.bus.dto.CustomerDTO;
 import com.bus.entity.Customer;
 import com.bus.exception.CustomerNotFoundException;
 

@@ -91,6 +91,18 @@ public ResponseEntity<MyErrorDetails> myCNFEHandler(CustomerNotFoundException cn
 	
 }
 	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> myFNFEHandler(LoginException le, WebRequest wr){
+			
+			MyErrorDetails error = new MyErrorDetails();
+			error.setTimestamp(LocalDateTime.now());
+			error.setMessage(le.getMessage());
+			error.setDescription(wr.getDescription(false));
+			
+			return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+		
+	
+}
 }
 
 

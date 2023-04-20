@@ -8,4 +8,6 @@ import com.bus.entity.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long>  {
 
 	public Customer findByMobileNumber(String mobileNumber);
+
+	public Customer findByUsername(String username);
 }

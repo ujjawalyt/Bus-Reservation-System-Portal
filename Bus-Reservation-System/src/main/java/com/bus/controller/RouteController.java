@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.bus.dao.RouteDTO;
+import com.bus.dto.RouteDTO;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.RouteNotFoundException;

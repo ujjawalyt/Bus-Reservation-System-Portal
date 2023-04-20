@@ -1,4 +1,4 @@
-package com.bus.dao;
+package com.bus.dto;
 
 import java.time.LocalTime;
 
@@ -13,13 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BusDTO {
+public class CustomerDTO {
 
-	private String busName;
-	private String driverName;
-	private String busType;
-	private String routeTo;
-	private LocalTime arrivalTime;
-	private LocalTime departureTime;
-	private Integer Seat;
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String mobileNumber;
+	private String email;
 }

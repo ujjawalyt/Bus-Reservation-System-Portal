@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bus.dao.RouteDTO;
+import com.bus.dto.RouteDTO;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.RouteNotFoundException;

@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
-import com.bus.dao.CustomerDTO;
+import com.bus.dto.CustomerDTO;
 import com.bus.entity.Customer;
 import com.bus.exception.CustomerNotFoundException;
 import com.bus.repository.CustomerRepository;
@@ -19,6 +20,8 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	
 
 	@Override
 	public Customer addCustomer(Customer customer) throws CustomerNotFoundException {
@@ -26,7 +29,11 @@ public class CustomerServiceImpl implements CustomerService {
 		if(isExsisting!=null) {
 			throw new CustomerNotFoundException("Customer already present with this mobile number"+ customer.getMobileNumber());
 		}
-		return customerRepository.save(customer);
+//		String password = customer.getPassword();
+//		customer.setPassword(bCryptPasswordEncoder.encode(password)); // encode the password using BCryptPasswordEncoder
+        return customerRepository.save(customer);
+		
+		
 	}
 
 	@Override
