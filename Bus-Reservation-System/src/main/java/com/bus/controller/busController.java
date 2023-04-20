@@ -25,7 +25,7 @@ import com.bus.service.BusService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/bus")
+@RequestMapping("/buses")
 public class busController {
 
 	

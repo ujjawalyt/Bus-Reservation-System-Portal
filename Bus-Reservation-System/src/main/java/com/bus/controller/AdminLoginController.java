@@ -15,7 +15,7 @@ import com.bus.service.AdminLoginService;
 
 
 @RestController
-@RequestMapping("/bus/admin")
+@RequestMapping("/admin")
 public class AdminLoginController {
 
 	@Autowired
