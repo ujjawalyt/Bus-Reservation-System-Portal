@@ -163,7 +163,7 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 
 
-#### For any feedback, report, suggestions, you can contact with me 
+#### For any feedback, report, suggestions, you can contact with us 
 [Let's Connect...]
 ### THANK YOU
 
