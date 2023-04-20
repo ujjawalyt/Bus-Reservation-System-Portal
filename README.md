@@ -119,10 +119,10 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 * `POST /admin/add` : Adds a new admin to the system.
 * `POST /admin/login` : Allows an admin to login to the system using their username and password.`Request Body`: JSON object representing the admin's login credentials
-* `DELETE /admin/logout/{sessionKey}` : `Path Parameters`: `sessionKey` The session key of the admin to logout
-* `PUT /update/{sessionKey}`: `Path Parameters`: `sessionKey` The session key of the admin to update
+* `DELETE /admin/logout/{sessionKey}` : `Path Parameters : sessionKey` The session key of the admin to logout
+* `PUT /update/{sessionKey}`: `Path Parameters : sessionKey` The session key of the admin to update
 `Request Body`: JSON object representing the updated admin details
-* `DELETE /delete/{sessionKey}` : `Path Parameters :` `sessionKey` The session key of the admin to delete
+* `DELETE /delete/{sessionKey}` : `Path Parameters :sessionKey` The session key of the admin to delete
 
 
 ### Customer Module
@@ -135,9 +135,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 `Request Header:` Authorization containing the session key
 `Request Body:` Customer object in JSON format
 * `DELETE /customer/delete/{id}` : Deletes an existing customer from the system
-`Path Parameters:`id: The ID of the customer to delete
+`Path Parameters: id` The ID of the customer to delete
 `Request Header:` Authorization containing the session key
-* `GET /customer/view/{id}` : Retrieves a customer by their ID `Path Parameters:` id: The ID of the customer to retrieve
+* `GET /customer/view/{id}` : Retrieves a customer by their ID `Path Parameters: id` The ID of the customer to retrieve
 `Request Header:` Authorization containing the session key
 
 
