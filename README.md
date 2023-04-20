@@ -24,12 +24,32 @@ The Bus-Reservation-System is a web-based application that allows users to reser
 
 ### Modules
 
+-  Admin Login Module
+-  Customer Login Module
 -  Admin Module
 -  Customer Module
 -  Bus Module
 -  Route Module
 -  FeedBack Module
 -  Reservation Module
+
+
+
+### Features
+
+* Admin Login Features :-
+    This module provides the functionality for admin authentication and validation to access the admin dashboard. The following features are included:
+    
+    * Admins can log in with their username and password.
+    * The module validates the admin's credentials and generates a session token for the admin to access the admin dashboard.
+    * The session token is stored securely and used to verify the admin's identity for subsequent requests.
+* Customer Login Features :-
+  This module provides the functionality for user authentication and validation to access user-specific features. The following features are included:
+
+  * Customer can register and create an account with a username and password.
+  * Customer can log in with their username and password.
+  * The module validates the user's credentials and generates a session token for the user to access user-specific features.
+  * The session token is stored securely and used to verify the user's identity for subsequent requests. 
 
 
 
