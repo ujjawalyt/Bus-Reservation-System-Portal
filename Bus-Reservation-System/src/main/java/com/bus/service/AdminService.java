@@ -9,4 +9,10 @@ import com.bus.exception.AdminNotFoundException;
 public interface AdminService {
 
 	public Admin saveNewAdminDetails(Admin admin) throws AdminNotFoundException;
+	
+	public Admin updateAdmin(Admin admin,String key) throws AdminNotFoundException;
+	
+	public String deleteAdmin(String key) throws AdminNotFoundException;
+	
+	
 }
