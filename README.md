@@ -50,8 +50,39 @@ The Bus-Reservation-System is a web-based application that allows users to reser
   * Customer can log in with their username and password.
   * The module validates the user's credentials and generates a session token for the user to access user-specific features.
   * The session token is stored securely and used to verify the user's identity for subsequent requests. 
-
-
+* Customer Features :-
+  This module provides functionality for managing customer data. The following features are included:
+  
+  * Add customer: Allows adding a new customer to the system.
+  * Update customer: Allows updating an existing customer's data, such as their name, email, or address.
+  * Delete customer: Allows deleting an existing customer from the system.
+  * View customer by ID: Allows retrieving a single customer's data by their unique ID.
+  * Admin can View all customers: Allows retrieving a list of all customers in the system, optionally filtered by a search key.
+* Bus Features :-
+  This module provides functionality for managing bus data. The following features are included:
+  
+  * Add bus: Admin adding a new bus to the system.
+  * Update bus: Admin updating an existing bus's data, such as its name, model, or seating capacity.
+  * Delete bus: Admin deleting an existing bus from the system.
+  * View bus by ID: Admin and Customer retrieving a single bus's data by its unique ID.
+  * View buses by type: Admin and Customer retrieving a list of all buses in the system of a particular type.
+  * View all buses: Admin and Customer retrieving a list of all buses in the system.
+* Route Features :-
+  This module provides functionality for managing bus data. The following features are included:
+  
+  * Add bus: Admin adding a new bus to the system.
+  * Update bus: Admin updating an existing bus's data, such as its name, model, or seating capacity.
+  * Delete bus: Admin deleting an existing bus from the system.
+  * View bus by ID: Admin and Customer retrieving a single bus's data by its unique ID.
+  * View buses by type: Admin and Customer retrieving a list of all buses in the system of a particular type.
+  * View all buses: Admin and Customer retrieving a list of all buses in the system.
+* FeedBack Features :-
+  This module provides functionality for managing feedback data. The following features are included:
+  
+  * Add feedback: Allows a customer to add new feedback to the system.
+  * Update feedback: Allows a customer to update their existing feedback.
+  * View feedback: Allows viewing a single feedback's data by its unique ID.
+  * View all feedback: Admin  viewing a list of all feedback in the system.
 
 ### ER Diagram
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
@@ -108,6 +139,17 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 `Request Header:` Authorization containing the session key
 * `GET /customer/view/{id}` : Retrieves a customer by their ID `Path Parameters:` id: The ID of the customer to retrieve
 `Request Header:` Authorization containing the session key
+
+
+### Bus Module
+
+
+* `POST /buses/add/{key}` : Adds a new bus to the system. Path Parameters: key The authentication key of the admin adding the bus. `Request Body`: JSON object representing the new bus's details.
+* `PUT /buses/update/{id}/{key}` : `Path Parameters`: id The ID of the bus to update. key The authentication key of the admin updating the bus. `Request Body`: JSON object representing the updated bus details.
+* `DELETE /buses/delete/{id}/{key}` : `Path Parameters`: id The ID of the bus to delete. key The authentication key of the admin deleting the bus.
+* `GET /buses/views/{id}` : `Path Parameters`: id The ID of the bus to view. Returns the details of the bus with the specified ID.
+* `GET /buses/viewall` : Returns a list of all buses registered in the system.
+* `GET /buses/view/{type}` : `Path Parameters`: type The type of bus to view. Returns a list of all buses with the specified type.
 
 
 
