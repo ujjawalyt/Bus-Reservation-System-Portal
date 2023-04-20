@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bus.dto.CustomerDTO;
 import com.bus.entity.Customer;
+import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.CustomerNotFoundException;
+import com.bus.exception.LoginException;
 import com.bus.service.CustomerService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -33,19 +35,20 @@ public class CustomerController {
 		return new ResponseEntity<Customer>(customerService.addCustomer(customer),HttpStatus.CREATED);
 	}
 	@PutMapping("/update/{id}")
-	public ResponseEntity<CustomerDTO> updateCustomer_Handler(@RequestBody CustomerDTO customerDTO, @PathVariable("id") Long id)  throws CustomerNotFoundException{
+	public ResponseEntity<CustomerDTO> updateCustomer_Handler(@RequestBody CustomerDTO customerDTO,
+			@PathVariable("id") Long id)  throws CustomerNotFoundException,LoginException{
 		return new ResponseEntity<CustomerDTO>(customerService.updateCustomer(customerDTO, id),HttpStatus.ACCEPTED);
 	}
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteCustomer_Handler(@PathVariable("id") Long id)  throws CustomerNotFoundException{
+	public ResponseEntity<String> deleteCustomer_Handler(@PathVariable("id") Long id)  throws CustomerNotFoundException,LoginException{
 		return new ResponseEntity<String>(customerService.deleteCustomer(id),HttpStatus.OK);
 	}
 	@GetMapping("/view/{id}")
-	public ResponseEntity<Customer> getCustomerById_Handler(@PathVariable("id") Long id)  throws CustomerNotFoundException{
+	public ResponseEntity<Customer> getCustomerById_Handler(@PathVariable("id") Long id)  throws CustomerNotFoundException,LoginException{
 		return new ResponseEntity<Customer>(customerService.viewCustomerById(id),HttpStatus.ACCEPTED);
 	}
-	@GetMapping("/viewall")
-	public ResponseEntity<List<Customer>> getAllCustomer_Handler()  throws CustomerNotFoundException{
-		return new ResponseEntity<List<Customer>>(customerService.viewAllCustomer(),HttpStatus.ACCEPTED);
+	@GetMapping("/viewall/{key}")
+	public ResponseEntity<List<Customer>> getAllCustomer_Handler(@PathVariable("key") String key)  throws CustomerNotFoundException,AdminNotFoundException{
+		return new ResponseEntity<List<Customer>>(customerService.viewAllCustomer(key),HttpStatus.ACCEPTED);
 	}
 }

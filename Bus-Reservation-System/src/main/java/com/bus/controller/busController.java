@@ -32,18 +32,18 @@ public class busController {
 	@Autowired
 	private BusService busService;
 	
-	@PostMapping("/add")
-	public ResponseEntity<Buses> postNewBus_Handler(@RequestBody Buses Buses)  throws BusNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<Buses>(busService.addBus(Buses),HttpStatus.CREATED);
+	@PostMapping("/add/{key}")
+	public ResponseEntity<Buses> postNewBus_Handler(@RequestBody Buses Buses,@PathVariable("key") String key)  throws BusNotFoundException,AdminNotFoundException{
+		return new ResponseEntity<Buses>(busService.addBus(Buses,key),HttpStatus.CREATED);
 	}
-	@PutMapping("/update/{id}")
-	public ResponseEntity<BusDTO> updateBus_Handler(@RequestBody BusDTO busDTO, 
+	@PutMapping("/update/{id}/{key}")
+	public ResponseEntity<BusDTO> updateBus_Handler(@RequestBody BusDTO busDTO, @PathVariable("key") String key,
 			@PathVariable("id") Long id)  throws BusNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<BusDTO>(busService.updateBus(busDTO, id),HttpStatus.ACCEPTED);
+		return new ResponseEntity<BusDTO>(busService.updateBus(busDTO, id,key),HttpStatus.ACCEPTED);
 	}
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteBus_Handler(@PathVariable("id") Long id)  throws BusNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<String>(busService.deleteBus(id),HttpStatus.OK);
+	@DeleteMapping("/delete/{id}/{key}")
+	public ResponseEntity<String> deleteBus_Handler(@PathVariable("id") Long id,@PathVariable("key") String key)  throws BusNotFoundException,AdminNotFoundException{
+		return new ResponseEntity<String>(busService.deleteBus(id,key),HttpStatus.OK);
 	}
 	@GetMapping("/views/{id}")
 	public ResponseEntity<Buses> getBudById_Handler(@PathVariable("id") Long id)  throws BusNotFoundException,AdminNotFoundException{

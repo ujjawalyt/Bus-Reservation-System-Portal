@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bus.dto.RouteDTO;
+import com.bus.entity.AdminCurrentSession;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.RouteNotFoundException;
+import com.bus.repository.CurrentAdminSessionDao;
 import com.bus.repository.RoutesRepository;
 import com.bus.service.RouteService;
 
@@ -17,14 +19,32 @@ public class RouteServiceImpl implements RouteService {
 
 	@Autowired
 	private RoutesRepository routesRepository;
+	
+	@Autowired
+	private CurrentAdminSessionDao currentAdminSessionDao;
 
 	@Override
-	public Routes addRoute(Routes routes) throws RouteNotFoundException, AdminNotFoundException {
+	public Routes addRoute(Routes routes,String key) throws RouteNotFoundException, AdminNotFoundException {
+		if(key==null) {
+			throw new AdminNotFoundException("Key Should not be null");
+		}
+		AdminCurrentSession admin=currentAdminSessionDao.findByAdminKey(key);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
+		}
 		return routesRepository.save(routes);
 	}
 
 	@Override
-	public RouteDTO updateRoute(RouteDTO routeDTO, Long routeId) throws RouteNotFoundException, AdminNotFoundException {
+	public RouteDTO updateRoute(RouteDTO routeDTO, Long routeId,String key) throws RouteNotFoundException, AdminNotFoundException {
+		if(key==null) {
+			throw new AdminNotFoundException("Key Should not be null");
+		}
+		AdminCurrentSession admin=currentAdminSessionDao.findByAdminKey(key);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
+		}
+		
 		Optional<Routes> isOptional=routesRepository.findById(routeId);
 		if(isOptional.isEmpty()) {
 			throw new RouteNotFoundException("No Route is found with this id- "+ routeId);
@@ -41,7 +61,15 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public String deleteRoute(Long routeId) throws AdminNotFoundException, RouteNotFoundException {
+	public String deleteRoute(Long routeId,String key) throws AdminNotFoundException, RouteNotFoundException {
+		if(key==null) {
+			throw new AdminNotFoundException("Key Should not be null");
+		}
+		AdminCurrentSession admin=currentAdminSessionDao.findByAdminKey(key);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
+		}
+		
 		Optional<Routes> isOptional=routesRepository.findById(routeId);
 		if(isOptional.isEmpty()) {
 			throw new RouteNotFoundException("No Route is found with this id- "+ routeId);

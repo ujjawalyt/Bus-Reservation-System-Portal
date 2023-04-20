@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bus.dto.BusDTO;
+import com.bus.entity.Admin;
+import com.bus.entity.AdminCurrentSession;
 import com.bus.entity.Buses;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.BusNotFoundException;
 import com.bus.repository.BusRepository;
+import com.bus.repository.CurrentAdminSessionDao;
 
 @Service
 public class BusServiceImpl implements BusService{
@@ -20,14 +23,32 @@ public class BusServiceImpl implements BusService{
 	
 	@Autowired
 	private BusRepository busRepository;
+	@Autowired
+	private CurrentAdminSessionDao currentAdminSessionDao;
 
 	@Override
-	public Buses addBus(Buses bus) throws AdminNotFoundException, BusNotFoundException {
+	public Buses addBus(Buses bus,String key) throws AdminNotFoundException, BusNotFoundException {
+		if(key==null) {
+			throw new AdminNotFoundException("Key Should not be null");
+		}
+		AdminCurrentSession admin=currentAdminSessionDao.findByAdminKey(key);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
+		}
 		return busRepository.save(bus);
 	}
 
 	@Override
-	public BusDTO updateBus(BusDTO busDTO, Long busId) throws AdminNotFoundException, BusNotFoundException {
+	public BusDTO updateBus(BusDTO busDTO, Long busId,String key) throws AdminNotFoundException, BusNotFoundException {
+		if(key==null) {
+			throw new AdminNotFoundException("Key Should not be null");
+		}
+		
+		AdminCurrentSession admin=currentAdminSessionDao.findByAdminKey(key);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
+		}
+		
 		Optional<Buses> isOptional=busRepository.findById(busId);
 		if(isOptional.isEmpty()) {
 			throw new BusNotFoundException("No Bus is found with this id- "+busId);
@@ -49,7 +70,16 @@ public class BusServiceImpl implements BusService{
 	}
 
 	@Override
-	public String deleteBus(Long busId) throws AdminNotFoundException, BusNotFoundException {
+	public String deleteBus(Long busId,String key) throws AdminNotFoundException, BusNotFoundException {
+		if(key==null) {
+			throw new AdminNotFoundException("Key Should not be null");
+		}
+		
+		AdminCurrentSession admin=currentAdminSessionDao.findByAdminKey(key);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
+		}
+		
 		Optional<Buses> isOptional=busRepository.findById(busId);
 		if(isOptional.isEmpty()) {
 			throw new BusNotFoundException("No Bus is found with this id- "+busId);
@@ -60,7 +90,7 @@ public class BusServiceImpl implements BusService{
 	}
 
 	@Override
-	public Buses viewBusById(Long busId) throws AdminNotFoundException, BusNotFoundException {
+	public Buses viewBusById(Long busId) throws AdminNotFoundException, BusNotFoundException {		
 		Optional<Buses> isOptional=busRepository.findById(busId);
 		if(isOptional.isEmpty()) {
 			throw new BusNotFoundException("No Bus is found with this id- "+busId);
@@ -71,6 +101,7 @@ public class BusServiceImpl implements BusService{
 
 	@Override
 	public List<Buses> viewByBusType(String busType) throws AdminNotFoundException, BusNotFoundException {
+		
 		List<Buses> buses=busRepository.findByBusType(busType);
 		if(buses==null) {
 			throw new BusNotFoundException("No bus if found with this type -"+ busType);

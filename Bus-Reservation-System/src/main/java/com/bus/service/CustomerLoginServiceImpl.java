@@ -13,7 +13,7 @@ import com.bus.entity.CurrentCustomerSession;
 import com.bus.entity.Customer;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.CustomerNotFoundException;
-import com.bus.repository.CurrrentCustomerSessionDao;
+import com.bus.repository.CurrentCustomerSessionDao;
 import com.bus.repository.CustomerRepository;
 
 import net.bytebuddy.utility.RandomString;
@@ -22,7 +22,7 @@ import net.bytebuddy.utility.RandomString;
 public class CustomerLoginServiceImpl implements CustomerLoginService {
 
 	@Autowired
-	private CurrrentCustomerSessionDao currrentCustomerSessionDao;
+	private CurrentCustomerSessionDao currrentCustomerSessionDao;
 	
 	@Autowired
 	private CustomerRepository customerRepository;
