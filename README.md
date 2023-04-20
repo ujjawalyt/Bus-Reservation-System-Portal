@@ -57,6 +57,11 @@ The Bus-Reservation-System is a web-based application that allows users to reser
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
 ![Screenshot 2023-04-19 114958](https://user-images.githubusercontent.com/87421981/232984037-84ca017d-6fca-481a-b859-fc2182a4a532.png)
 
+### Project Structure
+![bus](https://user-images.githubusercontent.com/87421981/233263149-c348e6b0-0e3f-4a54-8392-68cb734cc47e.png)
+
+
+
 
 
 ### Installation & Run
@@ -76,6 +81,34 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 `https://localhost:8888/`
 
 `http://localhost:8888/swagger-ui.html`
+
+
+
+### Admin Module
+
+* `POST /admin/add` : Adds a new admin to the system.
+* `POST /admin/login` : Allows an admin to login to the system using their username and password.`Request Body`: JSON object representing the admin's login credentials
+* `DELETE /admin/logout/{sessionKey}` : `Path Parameters`: `sessionKey` The session key of the admin to logout
+* `PUT /update/{sessionKey}`: `Path Parameters`: `sessionKey` The session key of the admin to update
+`Request Body`: JSON object representing the updated admin details
+* `DELETE /delete/{sessionKey}` : `Path Parameters :` `sessionKey` The session key of the admin to delete
+
+
+### Customer Module
+
+
+* `POST /customer/add` : Adds a new customer to the system.
+* `POST /customer/login` : Allows a customer to login with their username and password. `Request Body`: CustomerLoginDto object in JSON format
+* `DELETE/customer/logout/{key}` : Allows a customer to logout from the system. `Request Header:` Authorization containing the session key
+* `PUT /customer/update/{key}` : Updates an existing customer in the system.
+`Request Header:` Authorization containing the session key
+`Request Body:` Customer object in JSON format
+* `DELETE /customer/delete/{id}` : Deletes an existing customer from the system
+`Path Parameters:`id: The ID of the customer to delete
+`Request Header:` Authorization containing the session key
+* `GET /customer/view/{id}` : Retrieves a customer by their ID `Path Parameters:` id: The ID of the customer to retrieve
+`Request Header:` Authorization containing the session key
+
 
 
 
