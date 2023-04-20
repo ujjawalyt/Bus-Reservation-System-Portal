@@ -145,17 +145,26 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 
 * `POST /buses/add/{key}` : Adds a new bus to the system. Path Parameters: key The authentication key of the admin adding the bus. `Request Body`: JSON object representing the new bus's details.
-* `PUT /buses/update/{id}/{key}` : `Path Parameters`: id The ID of the bus to update. key The authentication key of the admin updating the bus. `Request Body`: JSON object representing the updated bus details.
-* `DELETE /buses/delete/{id}/{key}` : `Path Parameters`: id The ID of the bus to delete. key The authentication key of the admin deleting the bus.
-* `GET /buses/views/{id}` : `Path Parameters`: id The ID of the bus to view. Returns the details of the bus with the specified ID.
+* `PUT /buses/update/{id}/{key}` : `Path Parameters: id` The ID of the bus to update. key The authentication key of the admin updating the bus. `Request Body`: JSON object representing the updated bus details.
+* `DELETE /buses/delete/{id}/{key}` : `Path Parameters: id` The ID of the bus to delete. key The authentication key of the admin deleting the bus.
+* `GET /buses/views/{id}` : `Path Parameters: id` The ID of the bus to view. Returns the details of the bus with the specified ID.
 * `GET /buses/viewall` : Returns a list of all buses registered in the system.
-* `GET /buses/view/{type}` : `Path Parameters`: type The type of bus to view. Returns a list of all buses with the specified type.
+* `GET /buses/view/{type}` : `Path Parameters: type` The type of bus to view. Returns a list of all buses with the specified type.
+
+
+### Route module
+
+
+* `POST /route/add/{key}`: Adds a new route to the system. `Request Body:` JSON object representing the route details. Path Parameters: key The authentication key of the admin user.
+* `PUT /route/update/{id}/{key}`: Updates an existing route in the system. `Request Body:` JSON object representing the updated route details. `Path Parameters: id` The ID of the route to update. key The authentication key of the admin user.
+* `DELETE /route/delete/{id}/{key}`: Deletes a route from the system. `Path Parameters: id` The ID of the route to delete. key The authentication key of the admin user.
+* `GET /route/views/{id}`: Retrieves the details of a specific route by its ID. `Path Parameters: id` The ID of the route to retrieve.
+* `GET /route/viewall`: Retrieves the details of all routes in the system.
 
 
 
-
-
-
-
+#### For any feedback, report, suggestions, you can contact with me 
+[Let's Connect...]
+### THANK YOU
 
 
