@@ -14,13 +14,14 @@ import com.bus.exception.LoginException;
 public interface CustomerService {
 
 	
-	public Customer addCustomer(Customer customer) throws CustomerNotFoundException;
-	
-	public CustomerDTO updateCustomer (CustomerDTO customerDTO, Long customerId) throws CustomerNotFoundException,LoginException;
-	
-	public String deleteCustomer(Long customerId) throws CustomerNotFoundException,LoginException;
-	
-	public Customer viewCustomerById(Long customerId) throws CustomerNotFoundException,LoginException;
-	
-	public List<Customer> viewAllCustomer(String key) throws CustomerNotFoundException,AdminNotFoundException;
+	public Customer addCustomer(CustomerDTO customerDTO) throws CustomerNotFoundException;
+
+	public CustomerDTO updateCustomer(CustomerDTO customerDTO, Long customerId)
+			throws CustomerNotFoundException, LoginException;
+
+	public String deleteCustomer(Long customerId) throws CustomerNotFoundException, LoginException;
+
+	public Customer viewCustomerById(Long customerId) throws CustomerNotFoundException, LoginException;
+
+	public List<Customer> viewAllCustomer(String key) throws CustomerNotFoundException, AdminNotFoundException;
 }

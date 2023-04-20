@@ -2,6 +2,8 @@ package com.bus.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class CustomerController {
 	
 	
 	@PostMapping("/add")
-	public ResponseEntity<Customer> postNewCustomer_Handler(@RequestBody Customer customer)  throws CustomerNotFoundException{
+	public ResponseEntity<Customer> postNewCustomer_Handler(@Valid @RequestBody CustomerDTO customer)  throws CustomerNotFoundException{
 		return new ResponseEntity<Customer>(customerService.addCustomer(customer),HttpStatus.CREATED);
 	}
 	@PutMapping("/update/{id}")

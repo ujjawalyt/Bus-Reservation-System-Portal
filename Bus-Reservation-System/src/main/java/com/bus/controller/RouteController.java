@@ -26,30 +26,34 @@ public class RouteController {
 
 	@Autowired
 	private RouteService routeService;
-	
+
 	@PostMapping("/add/{key}")
-	public ResponseEntity<Routes> postNewRoute_Handler(@RequestBody Routes Routes,
-			@PathVariable("key") String key)  throws RouteNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<Routes>(routeService.addRoute(Routes,key),HttpStatus.CREATED);
-	}
-	@PutMapping("/update/{id}/{key}")
-	public ResponseEntity<RouteDTO> updateRoute_Handler(@RequestBody RouteDTO routeDTO, @PathVariable("key") String key,
-			@PathVariable("id") Long id)  throws RouteNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<RouteDTO>(routeService.updateRoute(routeDTO, id,key),HttpStatus.ACCEPTED);
-	}
-	@DeleteMapping("/delete/{id}/{key}")
-	public ResponseEntity<String> deleteRoute_Handler(@PathVariable("id") Long id,@PathVariable("key") String key)  throws RouteNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<String>(routeService.deleteRoute(id,key),HttpStatus.OK);
-	}
-	@GetMapping("/views/{id}")
-	public ResponseEntity<Routes> getRouteById_Handler(@PathVariable("id") Long id)  throws RouteNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<Routes>(routeService.routeById(id),HttpStatus.ACCEPTED);
-	}
-	@GetMapping("/viewall")
-	public ResponseEntity<List<Routes>> getAllRoute_Handler()  throws RouteNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<List<Routes>>(routeService.viewAllRoutes(),HttpStatus.ACCEPTED);
+	public ResponseEntity<Routes> postNewRoute_Handler(@RequestBody Routes Routes, @PathVariable("key") String key)
+			throws RouteNotFoundException, AdminNotFoundException {
+		return new ResponseEntity<Routes>(routeService.addRoute(Routes, key), HttpStatus.CREATED);
 	}
 
-	
-	
+	@PutMapping("/update/{id}/{key}")
+	public ResponseEntity<RouteDTO> updateRoute_Handler(@RequestBody RouteDTO routeDTO, @PathVariable("key") String key,
+			@PathVariable("id") Long id) throws RouteNotFoundException, AdminNotFoundException {
+		return new ResponseEntity<RouteDTO>(routeService.updateRoute(routeDTO, id, key), HttpStatus.ACCEPTED);
+	}
+
+	@DeleteMapping("/delete/{id}/{key}")
+	public ResponseEntity<String> deleteRoute_Handler(@PathVariable("id") Long id, @PathVariable("key") String key)
+			throws RouteNotFoundException, AdminNotFoundException {
+		return new ResponseEntity<String>(routeService.deleteRoute(id, key), HttpStatus.OK);
+	}
+
+	@GetMapping("/views/{id}")
+	public ResponseEntity<Routes> getRouteById_Handler(@PathVariable("id") Long id)
+			throws RouteNotFoundException, AdminNotFoundException {
+		return new ResponseEntity<Routes>(routeService.routeById(id), HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/viewall")
+	public ResponseEntity<List<Routes>> getAllRoute_Handler() throws RouteNotFoundException, AdminNotFoundException {
+		return new ResponseEntity<List<Routes>>(routeService.viewAllRoutes(), HttpStatus.ACCEPTED);
+	}
+
 }

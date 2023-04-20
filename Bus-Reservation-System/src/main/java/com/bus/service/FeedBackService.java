@@ -9,12 +9,15 @@ import com.bus.exception.FeedbackNotFoundException;
 
 public interface FeedBackService {
 
-	
-	public Feedback addFeedBack(Feedback feedback,Long customerId) throws CustomerNotFoundException, FeedbackNotFoundException;
-	
-	public Feedback updatefeedBack(Feedback feedback, Long feedbackId,Long customerId) throws CustomerNotFoundException, FeedbackNotFoundException;
-	
-	public Feedback viewFeedback(Long feedbackId) throws CustomerNotFoundException,AdminNotFoundException,FeedbackNotFoundException;
-	
-	public List<Feedback> viewAllFeedback() throws CustomerNotFoundException,AdminNotFoundException, FeedbackNotFoundException;
+	public Feedback addFeedBack(Feedback feedback, Long customerId)
+			throws CustomerNotFoundException, FeedbackNotFoundException;
+
+	public Feedback updatefeedBack(Feedback feedback, Long feedbackId, Long customerId)
+			throws CustomerNotFoundException, FeedbackNotFoundException;
+
+	public Feedback viewFeedback(Long feedbackId)
+			throws CustomerNotFoundException, AdminNotFoundException, FeedbackNotFoundException;
+
+	public List<Feedback> viewAllFeedback()
+			throws CustomerNotFoundException, AdminNotFoundException, FeedbackNotFoundException;
 }

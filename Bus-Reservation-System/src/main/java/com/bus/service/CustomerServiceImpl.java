@@ -33,14 +33,24 @@ public class CustomerServiceImpl implements CustomerService {
 	private CurrentAdminSessionDao currentAdminSessionDao;
 
 	@Override
-	public Customer addCustomer(Customer customer) throws CustomerNotFoundException {
-		Customer isExsisting = customerRepository.findByMobileNumber(customer.getMobileNumber());
+	public Customer addCustomer(CustomerDTO customerdto) throws CustomerNotFoundException {
+		Customer isExsisting = customerRepository.findByMobileNumber(customerdto.getMobileNumber());
 		if (isExsisting != null) {
 			throw new CustomerNotFoundException(
-					"Customer already present with this mobile number" + customer.getMobileNumber());
+					"Customer already present with this mobile number" + customerdto.getMobileNumber());
 		}
 //		String password = customer.getPassword();
 //		customer.setPassword(bCryptPasswordEncoder.encode(password)); // encode the password using BCryptPasswordEncoder
+		Customer customer = new Customer();
+		customer.setEmail(customerdto.getEmail());
+		customer.setFirstName(customerdto.getFirstName());
+		customer.setLastName(customerdto.getLastName());
+		customer.setMobileNumber(customerdto.getMobileNumber());
+		customer.setPassword(customerdto.getPassword());
+	    customer.setUsername(customerdto.getUsername());
+	    
+		
+		
 		return customerRepository.save(customer);
 
 	}
