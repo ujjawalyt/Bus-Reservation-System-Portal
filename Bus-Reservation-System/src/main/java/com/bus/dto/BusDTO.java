@@ -2,10 +2,15 @@ package com.bus.dto;
 
 import java.time.LocalTime;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.bus.entity.Buses;
 import com.bus.entity.Feedback;
@@ -44,12 +49,23 @@ public class BusDTO {
 	@NotEmpty (message = "routeTo Can't be Empty.")
 	private String routeTo;
 	
-	private LocalTime arrivalTime;
 	
+	@NotNull(message = "Arrival time can't be null.")
+	@DateTimeFormat(pattern = "HH:mm:ss")
+	private LocalTime arrivalTime ;
+	
+	
+	@NotNull(message = "Departure time can't be null.")
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private LocalTime departureTime;
 	
-	@NotNull(message = "routeTo Can't be null.")
-	@NotBlank(message = "routeTo Can't be Blank.")
-	@NotEmpty (message = "routeTo Can't be Empty.")
+	@NotNull(message = "Number of seats can't be null.")
+	@Positive(message = "Number of seats should be greater than 0.")
 	private Integer Seat;
+	
+	
+	@NotNull(message = "Available seats can't be null.")
+	@Min(value = 0, message = "Available seats can't be negative.")
+	@Max(value = 100, message = "Available seats can't be greater than 100.")
+	private Integer availableSeats;
 }

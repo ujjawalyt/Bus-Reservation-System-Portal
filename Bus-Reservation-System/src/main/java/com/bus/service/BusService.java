@@ -9,7 +9,7 @@ import com.bus.exception.BusNotFoundException;
 
 public interface BusService {
 
-	public Buses addBus(Buses bus, String key) throws AdminNotFoundException, BusNotFoundException;
+	public Buses addBus(BusDTO busDTO, String key) throws AdminNotFoundException, BusNotFoundException;
 
 	public BusDTO updateBus(BusDTO busDTO, Long busId, String key) throws AdminNotFoundException, BusNotFoundException;
 

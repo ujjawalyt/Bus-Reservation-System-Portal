@@ -1,6 +1,7 @@
 package com.bus.entity;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,6 +34,6 @@ public class Routes {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
-	 private List<Buses> busList;
+	 private List<Buses> busList = new ArrayList<>();
 
 }

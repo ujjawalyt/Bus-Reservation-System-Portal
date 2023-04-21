@@ -27,7 +27,7 @@ public class BusServiceImpl implements BusService{
 	private CurrentAdminSessionDao currentAdminSessionDao;
 
 	@Override
-	public Buses addBus(Buses bus,String key) throws AdminNotFoundException, BusNotFoundException {
+	public Buses addBus(BusDTO busDTO,String key) throws AdminNotFoundException, BusNotFoundException {
 		if(key==null) {
 			throw new AdminNotFoundException("Key Should not be null");
 		}
@@ -35,7 +35,19 @@ public class BusServiceImpl implements BusService{
 		if(admin==null) {
 			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
 		}
-		return busRepository.save(bus);
+		
+		Buses buses = new Buses();
+		buses.setAvailableSeats(busDTO.getAvailableSeats());
+		buses.setBusName(busDTO.getBusName());
+		buses.setArrivalTime(busDTO.getArrivalTime());
+		buses.setBusType(busDTO.getBusType());
+		buses.setDriverName(busDTO.getDriverName());
+		buses.setRouteTo(busDTO.getRouteTo());
+		buses.setDepartureTime(busDTO.getDepartureTime());
+		buses.setSeat(busDTO.getSeat());
+	
+		
+		return busRepository.save(buses);
 	}
 
 	@Override

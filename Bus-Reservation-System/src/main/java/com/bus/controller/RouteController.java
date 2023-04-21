@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bus.dto.RouteDTO;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
+import com.bus.exception.BusNotFoundException;
 import com.bus.exception.RouteNotFoundException;
 import com.bus.service.RouteService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -27,10 +28,10 @@ public class RouteController {
 	@Autowired
 	private RouteService routeService;
 
-	@PostMapping("/add/{key}")
-	public ResponseEntity<Routes> postNewRoute_Handler(@RequestBody Routes Routes, @PathVariable("key") String key)
-			throws RouteNotFoundException, AdminNotFoundException {
-		return new ResponseEntity<Routes>(routeService.addRoute(Routes, key), HttpStatus.CREATED);
+	@PostMapping("/add/{key}/{id}")
+	public ResponseEntity<Routes> postNewRoute_Handler(@RequestBody Routes Routes, @PathVariable("key") String key,@PathVariable("id") Long id)
+			throws RouteNotFoundException, AdminNotFoundException,BusNotFoundException {
+		return new ResponseEntity<Routes>(routeService.addRoute(Routes, key,id), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{id}/{key}")

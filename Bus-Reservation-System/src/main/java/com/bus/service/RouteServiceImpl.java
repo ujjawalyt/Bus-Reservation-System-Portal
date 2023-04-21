@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.bus.dto.RouteDTO;
 import com.bus.entity.AdminCurrentSession;
+import com.bus.entity.Buses;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
+import com.bus.exception.BusNotFoundException;
 import com.bus.exception.RouteNotFoundException;
+import com.bus.repository.BusRepository;
 import com.bus.repository.CurrentAdminSessionDao;
 import com.bus.repository.RoutesRepository;
 import com.bus.service.RouteService;
@@ -22,9 +25,12 @@ public class RouteServiceImpl implements RouteService {
 	
 	@Autowired
 	private CurrentAdminSessionDao currentAdminSessionDao;
+	
+	@Autowired
+	private BusRepository busRepository;
 
 	@Override
-	public Routes addRoute(Routes routes,String key) throws RouteNotFoundException, AdminNotFoundException {
+	public Routes addRoute(Routes routes,String key, Long busId) throws RouteNotFoundException, AdminNotFoundException, BusNotFoundException {
 		if(key==null) {
 			throw new AdminNotFoundException("Key Should not be null");
 		}
@@ -32,6 +38,11 @@ public class RouteServiceImpl implements RouteService {
 		if(admin==null) {
 			throw new AdminNotFoundException("Admin is not logged in with this key -" +key);
 		}
+		Optional<Buses> bus = busRepository.findById(busId);
+	    if(bus.isEmpty()) {
+	        throw new BusNotFoundException("Bus not found with id - " + busId);
+	    }
+	    routes.getBusList().add(bus.get());
 		return routesRepository.save(routes);
 	}
 

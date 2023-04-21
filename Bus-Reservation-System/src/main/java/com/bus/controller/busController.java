@@ -35,8 +35,8 @@ public class busController {
 	private BusService busService;
 	
 	@PostMapping("/add/{key}")
-	public ResponseEntity<Buses> postNewBus_Handler(@RequestBody Buses Buses,@PathVariable("key") String key)  throws BusNotFoundException,AdminNotFoundException{
-		return new ResponseEntity<Buses>(busService.addBus(Buses,key),HttpStatus.CREATED);
+	public ResponseEntity<Buses> postNewBus_Handler(@Valid @RequestBody BusDTO busDTO,@PathVariable("key") String key)  throws BusNotFoundException,AdminNotFoundException{
+		return new ResponseEntity<Buses>(busService.addBus(busDTO,key),HttpStatus.CREATED);
 	}
 	@PutMapping("/update/{id}/{key}")
 	public ResponseEntity<BusDTO> updateBus_Handler(@Valid @RequestBody BusDTO busDTO, @PathVariable("key") String key,

@@ -2,6 +2,8 @@ package com.bus.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +33,13 @@ public class FeedBackController {
 	private FeedBackService feedBackService;
 	
 	@PostMapping("/add/{id}")
-	public ResponseEntity<Feedback> addFeedback_Handler(@RequestBody FeedbackDto feedbackDto,@PathVariable("id") Long id) 
+	public ResponseEntity<Feedback> addFeedback_Handler(@Valid @RequestBody FeedbackDto feedbackDto,@PathVariable("id") Long id) 
 			throws CustomerNotFoundException,FeedbackNotFoundException, LoginException{
 		return new ResponseEntity<Feedback>(feedBackService.addFeedBack(feedbackDto, id),HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/add/{id}/{customerId}")
-	public ResponseEntity<Feedback> updateFeedback_Handler(@RequestBody FeedbackDto feedbackDto,@PathVariable("id") Long id,
+	public ResponseEntity<Feedback> updateFeedback_Handler(@Valid @RequestBody FeedbackDto feedbackDto,@PathVariable("id") Long id,
 			@PathVariable("customerId") Long customerId) throws CustomerNotFoundException,FeedbackNotFoundException{
 		return new ResponseEntity<Feedback>(feedBackService.updatefeedBack(feedbackDto, id, customerId),HttpStatus.CREATED);
 	}

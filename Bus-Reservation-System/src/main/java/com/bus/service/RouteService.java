@@ -5,11 +5,13 @@ import java.util.List;
 import com.bus.dto.RouteDTO;
 import com.bus.entity.Routes;
 import com.bus.exception.AdminNotFoundException;
+import com.bus.exception.BusNotFoundException;
 import com.bus.exception.RouteNotFoundException;
 
 public interface RouteService {
 
-	public Routes addRoute(Routes routes, String key) throws RouteNotFoundException, AdminNotFoundException;
+	public Routes addRoute(Routes routes, String key, Long busId) 
+			throws RouteNotFoundException, AdminNotFoundException, BusNotFoundException;
 
 	public RouteDTO updateRoute(RouteDTO routeDTO, Long routeId, String key)
 			throws RouteNotFoundException, AdminNotFoundException;
