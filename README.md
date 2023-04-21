@@ -163,6 +163,20 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 
 
+
+### some screenshots of the Swagger UI 
+
+![bus1](https://user-images.githubusercontent.com/87421981/233531313-7608bcaa-4172-4737-ade9-8465ed7a769c.png)
+
+![bus2](https://user-images.githubusercontent.com/87421981/233531073-e40204f0-2848-4dc4-8dd9-b3c9d4e3ed42.png)
+
+![bus3](https://user-images.githubusercontent.com/87421981/233531080-3e2d3469-dcef-48d1-884b-37e75dfdb2a2.png)
+
+![bus4](https://user-images.githubusercontent.com/87421981/233531101-2b950eb9-7895-4e10-a20f-3f69a135dd67.png)
+
+![bus5](https://user-images.githubusercontent.com/87421981/233531109-9b59a694-7f4f-488a-9dfa-9e31f62ddb28.png)
+
+
 #### For any feedback, report, suggestions, you can contact with us 
 [Let's Connect...]
 ### THANK YOU
