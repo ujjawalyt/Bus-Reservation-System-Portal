@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bus.dto.FeedbackDto;
 import com.bus.entity.Feedback;
 import com.bus.exception.AdminNotFoundException;
 import com.bus.exception.CustomerNotFoundException;
 import com.bus.exception.FeedbackNotFoundException;
+import com.bus.exception.LoginException;
 import com.bus.service.FeedBackService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -29,20 +31,21 @@ public class FeedBackController {
 	private FeedBackService feedBackService;
 	
 	@PostMapping("/add/{id}")
-	public ResponseEntity<Feedback> addFeedback_Handler(@RequestBody Feedback feedback,@PathVariable("id") Long id) throws CustomerNotFoundException,FeedbackNotFoundException{
-		return new ResponseEntity<Feedback>(feedBackService.addFeedBack(feedback, id),HttpStatus.CREATED);
+	public ResponseEntity<Feedback> addFeedback_Handler(@RequestBody FeedbackDto feedbackDto,@PathVariable("id") Long id) 
+			throws CustomerNotFoundException,FeedbackNotFoundException, LoginException{
+		return new ResponseEntity<Feedback>(feedBackService.addFeedBack(feedbackDto, id),HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/add/{id}/{customerId}")
-	public ResponseEntity<Feedback> updateFeedback_Handler(@RequestBody Feedback feedback,@PathVariable("id") Long id,
+	public ResponseEntity<Feedback> updateFeedback_Handler(@RequestBody FeedbackDto feedbackDto,@PathVariable("id") Long id,
 			@PathVariable("customerId") Long customerId) throws CustomerNotFoundException,FeedbackNotFoundException{
-		return new ResponseEntity<Feedback>(feedBackService.updatefeedBack(feedback, id, customerId),HttpStatus.CREATED);
+		return new ResponseEntity<Feedback>(feedBackService.updatefeedBack(feedbackDto, id, customerId),HttpStatus.CREATED);
 	}
-	@GetMapping("view/id")
+	@GetMapping("view/{id}")
 	public ResponseEntity<Feedback> ViewFeedback_Handler(@PathVariable("id") Long id) throws CustomerNotFoundException,FeedbackNotFoundException,AdminNotFoundException{
 		return new ResponseEntity<Feedback>(feedBackService.viewFeedback(id),HttpStatus.CREATED);
 	}
-	@GetMapping("views")
+	@GetMapping("/views")
 	public ResponseEntity<List<Feedback>> ViewAllFeedback_Handler() throws CustomerNotFoundException,FeedbackNotFoundException,AdminNotFoundException{
 		return new ResponseEntity<List<Feedback>>(feedBackService.viewAllFeedback(),HttpStatus.CREATED);
 	}

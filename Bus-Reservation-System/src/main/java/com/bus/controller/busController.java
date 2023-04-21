@@ -2,6 +2,8 @@ package com.bus.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +39,7 @@ public class busController {
 		return new ResponseEntity<Buses>(busService.addBus(Buses,key),HttpStatus.CREATED);
 	}
 	@PutMapping("/update/{id}/{key}")
-	public ResponseEntity<BusDTO> updateBus_Handler(@RequestBody BusDTO busDTO, @PathVariable("key") String key,
+	public ResponseEntity<BusDTO> updateBus_Handler(@Valid @RequestBody BusDTO busDTO, @PathVariable("key") String key,
 			@PathVariable("id") Long id)  throws BusNotFoundException,AdminNotFoundException{
 		return new ResponseEntity<BusDTO>(busService.updateBus(busDTO, id,key),HttpStatus.ACCEPTED);
 	}
