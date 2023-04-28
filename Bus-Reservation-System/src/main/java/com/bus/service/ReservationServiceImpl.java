@@ -27,7 +27,7 @@ import com.bus.repository.ReservationRepository;
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
-	private ReservationRepository repositoryReservationRepository;
+	private ReservationRepository reservationRepository;
 	@Autowired
 	private CurrentAdminSessionDao currentAdminSessionDao;
 	@Autowired
@@ -61,11 +61,23 @@ public class ReservationServiceImpl implements ReservationService {
 						Buses bus = isBus.get();
 						reservation.setBus(bus);
 					}
+       
+					
+//					Reservation res = reservation;
+//					res = res =reservationRepository.save(res);
+//					exsCustomer.setReservation(reservation); 
+//					customerRepository.save(exsCustomer);
+//					return res;
+				
+					   reservation.setCustomer(exsCustomer);
 
-					Reservation res = repositoryReservationRepository.save(reservation);
-					exsCustomer.setReservation(res);
-					customerRepository.save(exsCustomer);
-					return res;
+		                Reservation res = reservationRepository.save(reservation);
+		                return res;
+					
+//					Reservation res =reservationRepository.save(reservation);
+//					exsCustomer.setReservation(res);
+//					customerRepository.save(exsCustomer);
+//					return res;
 
 				} else {
 					throw new BusNotFoundException("No bus is present with this id");
@@ -89,7 +101,7 @@ public class ReservationServiceImpl implements ReservationService {
 			Optional<CurrentCustomerSession> isCurrent = currentCustomerSessionDao
 					.findById(exsCustomer.getCustomerId());
 			if (isCurrent.isPresent()) {
-				Optional<Reservation> isReservation = repositoryReservationRepository.findById(reservationId);
+				Optional<Reservation> isReservation = reservationRepository.findById(reservationId);
 				if (isReservation.isPresent()) {
 					Reservation updateReservation=isReservation.get();
 					
@@ -101,7 +113,7 @@ public class ReservationServiceImpl implements ReservationService {
 					updateReservation.setSource(reservation.getSource());
 					updateReservation.setStatus(reservation.getStatus());
 					
-					repositoryReservationRepository.save(updateReservation);
+					reservationRepository.save(updateReservation);
 					return updateReservation;
 					
 				}else {
@@ -125,9 +137,9 @@ public class ReservationServiceImpl implements ReservationService {
 			Optional<CurrentCustomerSession> isCurrent = currentCustomerSessionDao
 					.findById(exsCustomer.getCustomerId());
 			if (isCurrent.isPresent()) {
-				Optional<Reservation> isReservation = repositoryReservationRepository.findById(reservationId);
+				Optional<Reservation> isReservation = reservationRepository.findById(reservationId);
 				if (isReservation.isPresent()) {
-					repositoryReservationRepository.delete(isReservation.get());
+					reservationRepository.delete(isReservation.get());
 					return "Canceelled SuccessFully ";
 					
 				}else {
@@ -151,7 +163,7 @@ public class ReservationServiceImpl implements ReservationService {
 			Optional<CurrentCustomerSession> isCurrent = currentCustomerSessionDao
 					.findById(exsCustomer.getCustomerId());
 			if (isCurrent.isPresent()) {
-				Optional<Reservation> isReservation = repositoryReservationRepository.findById(reservationId);
+				Optional<Reservation> isReservation = reservationRepository.findById(reservationId);
 				if (isReservation.isPresent()) {
 				return isReservation.get();
 				}else {
@@ -170,7 +182,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> allReservation(String key) throws AdminNotFoundException, ReservationNotFoundException {
 		AdminCurrentSession isAdmin=currentAdminSessionDao.findByAdminKey(key);
 		if(isAdmin!=null) {
-			List<Reservation>list= repositoryReservationRepository.findAll();
+			List<Reservation>list= reservationRepository.findAll();
 			if(list.size()==0) {
 				throw new ReservationNotFoundException("No reservation found");
 			}

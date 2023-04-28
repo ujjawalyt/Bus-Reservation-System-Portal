@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,7 +46,7 @@ public class ReservationController {
 			throws LoginException, CustomerNotFoundException ,ReservationNotFoundException{
 		return new ResponseEntity<String>(reservationService.deleteReservation(reservationId, customerId),HttpStatus.CREATED);
 	}
-	@DeleteMapping("view/{customerId}/{reservationId}")
+	@GetMapping("view/{customerId}/{reservationId}")
 	public ResponseEntity<Reservation> viewReservation_Handler(@PathVariable("customerId") Long customerId, @PathVariable("reservationId") Long reservationId)
 			throws LoginException, CustomerNotFoundException ,ReservationNotFoundException{
 		return new ResponseEntity<Reservation>(reservationService.viewByIdReservation(reservationId, customerId),HttpStatus.CREATED);
